@@ -1,8 +1,9 @@
 
 public class VIPCustomer extends Customer {
 	private int reward_points;
-	
-	public VIPCustomer(String name, String address, String iD, String phone) {
+
+    public VIPCustomer(){}
+        public VIPCustomer(String name, String address, String iD, String phone) {
 		super(name, address, iD, phone);
 		this.reward_points = 0;
 	}

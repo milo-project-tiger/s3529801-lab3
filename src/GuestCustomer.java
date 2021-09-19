@@ -1,7 +1,10 @@
 
 public class GuestCustomer extends Customer {
 	private final int max_borrow;
-	
+
+    public GuestCustomer(){
+	this.max_borrow = 2;
+    }
 	public GuestCustomer(String name, String address, String iD, String phone) {
 		super(name, address, iD, phone);
 		this.max_borrow = 2;

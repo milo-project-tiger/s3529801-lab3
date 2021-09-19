@@ -1,0 +1,18 @@
+public class PersonFactory{
+    public static Person create(String personType){
+	if(personType.equals("Lecturer")){
+	    return new Lecturer();
+	}
+	if(personType.equals("Student")){
+	    return new Student();
+	}
+	return null;
+    }
+    public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	System.out.println("what obj to create:");
+	String type = sc.nextLine();
+	Person lecturer = PersonFactory.create(type);
+	System.out.println(lecturer.toString());
+    }
+}

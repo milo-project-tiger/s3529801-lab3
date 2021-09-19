@@ -1,12 +1,18 @@
 import java.util.ArrayList;
 
-public class Customer {
+//Perhaps the Iterator is best, partially, implemented in an abstract class-- I am a little unpracticed.
+
+public class Customer implements StoreIterator{
 	private String name;
 	private String address;
 	private String ID;
 	private String phone;
 	private ArrayList<Video> rentals;
-	public Customer(String name, String address, String iD, String phone) {
+        private int currentItem;
+    
+    //default method to make factory pattern faster to implement.
+       public Customer(){}
+       public Customer(String name, String address, String iD, String phone) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -14,6 +20,7 @@ public class Customer {
 		this.phone = phone;
 		this.rentals = new ArrayList<Video>();
 	}
+       
 	public String getName() {
 		return name;
 	}
@@ -41,8 +48,22 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public boolean borrowVid(Video rental) {
-		for (int i = 0; i < this.rentals.size(); i++) {
+
+    //Iterator is introduced not refactored
+    public boolean hasNext(){
+	if (currentItem >= rentals.size()){
+	    currentItem = 0;
+	    return false;
+	}
+	return true;
+    }
+
+    
+    public Object next(){
+	return this.rentals.get(currentItem++);
+    }
+      public boolean borrowVid(Video rental) {
+	    for (int i = 0; i < this.rentals.size(); i++) {
 			Video temp = this.rentals.get(i);
 			if (temp.getID().equals(rental.getID())) {
 				System.out.println("Customer " + this.getName() + " has already borrowed video item "+rental.getTitle());
